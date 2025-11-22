@@ -24,11 +24,11 @@ const DashboardNav = () => {
   };
 
   const navItems = [
-    { icon: LayoutDashboard, label: "Dashboard", active: true },
-    { icon: Target, label: "Campaigns", active: false },
-    { icon: Users, label: "Clients", active: false },
-    { icon: FileText, label: "Reports", active: false },
-    { icon: Settings, label: "Settings", active: false },
+    { icon: LayoutDashboard, label: "Dashboard", active: true, path: "/dashboard" },
+    { icon: Target, label: "Campaigns", active: false, path: "#" },
+    { icon: Users, label: "Clients", active: false, path: "#" },
+    { icon: FileText, label: "Reports", active: false, path: "#" },
+    { icon: Settings, label: "Settings", active: false, path: "/settings" },
   ];
 
   return (
@@ -56,6 +56,7 @@ const DashboardNav = () => {
                 variant={item.active ? "default" : "ghost"}
                 className={item.active ? "bg-gradient-primary" : ""}
                 size="sm"
+                onClick={() => item.path !== "#" && navigate(item.path)}
               >
                 <item.icon className="w-4 h-4 mr-2" />
                 {item.label}
@@ -103,6 +104,12 @@ const DashboardNav = () => {
                 key={index}
                 variant={item.active ? "default" : "ghost"}
                 className={`w-full justify-start ${item.active ? "bg-gradient-primary" : ""}`}
+                onClick={() => {
+                  if (item.path !== "#") {
+                    navigate(item.path);
+                    setMobileMenuOpen(false);
+                  }
+                }}
               >
                 <item.icon className="w-4 h-4 mr-2" />
                 {item.label}
